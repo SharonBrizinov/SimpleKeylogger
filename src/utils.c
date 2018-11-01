@@ -71,9 +71,9 @@ BOOL CheckAndSuicideIfNeeded()
 		GetModuleFileName(NULL, wcCurrentPath, MAX_PATH);
 
 		// Remove from registry
-		if (RegOpenKeyExW(HKEY_CURRENT_USER, REGISTRY_STARTUP_PATH, 0, KEY_WRITE, &regKey) == ERROR_SUCCESS)
+		if (RegOpenKeyW(HKEY_CURRENT_USER, REGISTRY_STARTUP_PATH, &regKey) == ERROR_SUCCESS)
 		{
-			RegDeleteKeyExW(regKey, REGISTRY_STARTUP_KEY, KEY_WOW64_32KEY, 0);
+			RegDeleteValueW(regKey, REGISTRY_STARTUP_KEY);
 			RegCloseKey(regKey);
 		}
 		
